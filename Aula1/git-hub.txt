@@ -1,0 +1,8 @@
+Revisão de GitHub
+git init - cria repositório local
+git add - prepara os arquivos para serem versionados
+git commmit -m "" - salva uma versão com descrição
+git push - envia para o repositório remoto
+git pull - puxa atualizações do remoto para o local
+git branch - cria uma ramificação no projeto
+git merge - junção de branches
