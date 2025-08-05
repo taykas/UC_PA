@@ -12,6 +12,6 @@
 
 ## Checklist
 
-<!-- - [ ] Testado
+- [ ] Testado
 - [ ] Commit Semântico
-- [ ] Sem bugs conhecidos -->
+- [ ] Sem bugs conhecidos
