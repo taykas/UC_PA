@@ -1,0 +1,48 @@
+#header-principal {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(87, 48, 158);
+    padding: 5px;
+}
+
+#header-title {
+    align-items: center;
+}
+
+.h1-hello {
+    text-align: center;
+    color: rgb(33, 18, 126);
+}
+
+.lorem-p {
+    text-align: center;
+    color: rgb(68, 32, 102);
+}
+
+.div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#img-fof {
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.div-lista {
+    border-radius: 10px;
+    background-color: rgb(92, 72, 138);
+    margin: 5px;
+    padding: 0 20px 0px 20px;
+}
+
+#input {
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(129, 112, 144);
+}
+
+ 
