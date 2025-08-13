@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    height: 100vh;
+}
+
+.coluna {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quadrado-azul {
+    padding: 45px;
+    margin: 0% 0% 3.3% 0%;
+    top: 0;
+    background-color: blue;
+    flex-direction: column;
+}
+
+.quadrado-azul-final {
+    padding: 45px;
+    top: 0;
+    background-color: blue;
+    flex-direction: column;
+}
+
+#um {
+    align-items: center;
+    justify-self: center;
+}
+
+.quadrado-laranja {
+    padding: 5px;
+    margin: 0% 0% 3.3% 0%;
+    background-color: orange;
+    align-items: center;
+    justify-content: space-between;
+}
