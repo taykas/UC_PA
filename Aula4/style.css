@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url(background3.jpg);
+    background-image: url(background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -48,7 +48,7 @@ header {
 }
 
 
-#inicial-page {
+#inicial-page { 
     margin-top: 50px;
 }
 
@@ -64,9 +64,11 @@ header {
 
 
 #top-text, #bottom-text {
-    width: 600px;
+    width: 700px;
     font-size: 26px;
-    background-color: rgba(57, 114, 66, 0.5);
+    background-color: rgba(30, 28, 112, 0.5);
+    padding: 15px;
+    border-radius: 10px;
 }
 
 
