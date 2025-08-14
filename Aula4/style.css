@@ -3,12 +3,16 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Apple Chancery', sans-serif;
-    background-image: url(background.jpg);
+}
+
+body {
+    background-image: url(background3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container {
     height: 100vh;
-    background-color: rgb(110, 81, 143);
 }
 
 header {
@@ -58,10 +62,11 @@ header {
     justify-content: space-evenly;
 }
 
+
 #top-text, #bottom-text {
     width: 600px;
     font-size: 26px;
-
+    background-color: rgba(57, 114, 66, 0.5);
 }
 
 
