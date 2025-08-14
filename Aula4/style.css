@@ -51,14 +51,6 @@ header {
     border-radius: 50px;
 }
 
-/* .alice-icon {
-    margin-left: 250px;
-}
-
-.cat-icon {
-    margin-right: 300px;
-} */
-
 .top-column, .bottom-column  {
     display: flex;
     align-items: center;
