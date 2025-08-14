@@ -3,6 +3,7 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Apple Chancery', sans-serif;
+    background-image: url(background.jpg);
 }
 
 .container {
@@ -58,12 +59,9 @@ header {
 }
 
 #top-text, #bottom-text {
-    width: 530px;
+    width: 600px;
     font-size: 26px;
 
 }
 
-/* #top-text {
-    margin-left: 150px;
-} */
 
