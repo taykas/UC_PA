@@ -1,0 +1,25 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.square {
+    margin: 50px;
+    padding: 50px 20px 50px 20px;
+    width: 150px;
+    background-color: purple;
+    display: flex;
+}
+
+.ok {
+    background-color: rgb(46, 26, 156);
+}
+
+.bad {
+    background-color: rgb(95, 16, 16);
+}
+
+.textSquare {
+    text-align: center;
+}
