@@ -1,0 +1,102 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: "Shadows Into Light Two", cursive;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #352f5b;
+}
+
+
+main {
+    height: 100vh;
+}
+
+.title {
+    margin-bottom: 40px;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.main-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-add-to_do {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.add-to-do {
+    display: flex;
+}
+
+#input-to_do {
+    margin-right: 10px;
+    border-radius: 15px;
+    width: 250px;
+    background-color: #292747;
+    font-size: 15px;
+    padding: 15px;
+    color: white;
+}
+
+.add-button {
+    border-radius: 10px;
+    width: 100px;
+    font-size: 20px;
+}
+
+.add-button:hover {
+    background-color: rgba(114, 111, 148, 0.9);
+}
+
+#main-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.container-list {
+    width: 540px;
+    /* display: flex;  */
+}
+
+.list-title {
+    text-align: center;
+    margin: 5px;
+    color: white;
+}
+
+.new_div {
+    background-color: rgb(197, 176, 205);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.del-button {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.del-button:hover {
+    background-color: gray;
+}
