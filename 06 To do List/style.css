@@ -62,12 +62,21 @@ main {
     background-color: rgba(114, 111, 148, 0.9);
 }
 
+.section-list{
+    height: auto;
+    scroll-behavior: auto;
+    display: flex;
+    justify-content: center;
+}
+
 #main-list {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-top: 100px;
+
+    background-color: rgb(138, 102, 180);
 }
 
 .container-list {

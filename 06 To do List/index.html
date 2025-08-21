@@ -11,23 +11,25 @@
 </head>
 <body>
     <main>
-        <div class="main-container">
-            <section class="main-input">
-                <div class="container-add-to_do">
-                    <h1 class="title">To-Do List</h1>
-                    <section class="add-to-do">
-                        <input id="input-to_do" type="text" placeholder="Add a new task...">
-                        <button onclick="new_task()" class="add-button">Add</button>
-                    </section>
-                </div>
-            </section>
-            <section id="main-list">
+        <section class="main-input">
+            <div class="container-add-to_do">
+                <h1 class="title">To-Do List</h1>
+                <section class="add-to-do">
+                    <input id="input-to_do" type="text" placeholder="Add a new task...">
+                    <button onclick="new_task()" class="add-button">Add</button>
+                </section>
+            </div>
+        </section>
+
+        <section class="section-list">
+            <div id="main-list">
                 <h1 class="list-title">List</h1>
                 <div class="container-list">
                     <div id="task"></div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
     </main>
     <footer>
 
