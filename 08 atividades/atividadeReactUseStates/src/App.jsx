@@ -1,24 +1,46 @@
 import { useState } from 'react';
-import './components/style.css'
 
 function App() {
-  const [ativo, setAtivo] = useState(false);
-  const [texto, setTexto] = useState("");
+  const [visivel, setVisivel] = useState(true);
+  const [cor, setCor] = useState("red");
+  const [texto, setTexto] = useState("seila quero ir embora");
 
-  function toggle() {
-    setAtivo(prev => !prev);
+  function toggleVisibilidade() {
+    setVisivel(prev => !prev);
+  }
+
+  function changeColor() {
+    setCor(prev => (prev === "red" ? "blue" : "red"));
   }
 
   return (
     <>
-      <input type="text" onChange={(e) => setTexto(e.target.value)}/>
-      <button onClick={toggle}>Click</button>
-      <h1 className={ativo ? 'hidden' : 'oi'}>{texto}</h1>
+      <input 
+        type="text" 
+        value={texto} 
+        onChange={(e) => setTexto(e.target.value)} 
+        placeholder="Digite o texto aqui"
+      />
 
-      <button onClick={toggle}>Click</button>
-      <h1 className={ativo ? 'hidden' : 'oi'}>{texto}</h1>
+      <button onClick={toggleVisibilidade}>
+        {visivel ? "Esconder Texto" : "Mostrar Texto"}
+      </button>
 
+      <button onClick={changeColor}>
+        Mudar Cor
+      </button>
 
+      {visivel && (
+        <div style={{ 
+          backgroundColor: cor, 
+          color: cor === "red" ? "white" : "yellow", 
+          padding: "20px",
+          marginTop: "10px",
+          borderRadius: "8px"
+        }}>
+          <h1>{texto}</h1>
+        </div>
+      )}
     </>
   );
 }
