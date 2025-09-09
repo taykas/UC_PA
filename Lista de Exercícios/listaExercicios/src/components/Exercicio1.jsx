@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function Exercicio1() {
+export const Exercicio1 = () => {
   const [timer, setTimer] = useState(Date.now())
 
   useEffect(() => {

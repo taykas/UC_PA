@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './Exercicio5.css'
 
-export default function Exercicio5() {
+export const Exercicio5 = () => {
     const [isActive, setIsActive] = useState(false)
 
     useEffect(() => {
@@ -13,7 +13,6 @@ export default function Exercicio5() {
     }, [])
 
     return (
-        <div id='BlinkBlink' className={isActive ? 'teste' : ''}>
-        </div>
+        <div id='BlinkBlink' className={isActive ? 'teste' : ''}></div>
     )
 }

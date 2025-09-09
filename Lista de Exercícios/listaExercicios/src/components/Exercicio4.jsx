@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function Exercicio4() {
+export const Exercicio4 = () => {
     const [title, setTitle] = useState('')
 
     const UptadeTitle = (event) => {
@@ -13,7 +13,7 @@ export default function Exercicio4() {
 
     return (
         <div>
-            <p>O título atual da página é: {document.title}</p>
+            <p>O título atual da página é: {title}</p>
             <input type="text" value={title} onChange={UptadeTitle}/>
             <button onClick={SendValue}>Enviar novo Titulo</button>
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function Exercicio2() {
+export const Exercicio2 = () => {
     const [isRunning, setIsRunning] = useState(false)
     const [counter, setCounter] = useState(0)
     const [value, setValue] = useState(0)

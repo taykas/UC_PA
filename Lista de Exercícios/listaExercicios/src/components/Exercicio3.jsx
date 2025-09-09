@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function Exercicio3() {
+export const Exercicio3 = () => {
     const [value, setValue] = useState(0)
     const [update, setUpdate] = useState(0)
 
