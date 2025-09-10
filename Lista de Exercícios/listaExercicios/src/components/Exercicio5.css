@@ -1,0 +1,10 @@
+#BlinkBlink {
+  width: 350px;
+  height: 350px;
+  background-color: rgb(49, 55, 133); /* cor padrão */
+  transition: background-color 0.5s ease;
+}
+
+#BlinkBlink.teste {
+  background-color: rgb(201, 123, 51); /* cor alternada */
+}

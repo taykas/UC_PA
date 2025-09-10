@@ -1,0 +1,23 @@
+.TrafficLight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.default {
+    width: 350px;
+    height: 350px;
+    background-color: gray;
+}
+
+.red.active {
+    background-color: red;
+}
+
+.yellow.active {
+    background-color: yellow;
+}
+
+.green.active {
+    background-color: green;
+}
