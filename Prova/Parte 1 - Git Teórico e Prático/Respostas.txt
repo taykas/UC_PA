@@ -1,8 +1,7 @@
 
 1 - Em que situações você usaria o arquivo .gitignore?
 Cite exemplos práticos e explique a utilidade deste arquivo.
-R - Ignorar arquivos.
-
+R - Ignorar arquivos. Exemplo: o node_modules de um projeto react.
 
 2 - O que é um pull request no GitHub?
 Qual a importância dele para projetos colaborativos?
