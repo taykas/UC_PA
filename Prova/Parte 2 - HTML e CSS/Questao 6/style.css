@@ -26,7 +26,7 @@
 
 #quadrado-direita {
     width: 150px;
-    height: 100px;
+    height: 150px;
     background-color:  rgb(218, 200, 46);
 }
 
@@ -41,7 +41,7 @@
 
 #quadrado-esquerda {
     width: 150px;
-    height: 100px;
+    height: 150px;
     background-color: rgb(70, 129, 207);
 }
 
