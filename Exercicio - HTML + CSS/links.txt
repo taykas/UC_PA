@@ -1,0 +1,14 @@
+header
+https://senaies.com.br/wp-content/uploads/2015/12/senai_retro.jpg
+
+imagem 1
+https://cms.fiemt.ind.br/arquivos/senai/vitrine/aluno-senai.png
+
+imagem 2
+https://findes.com.br/wp-content/uploads/2023/04/IMG_0270-scaled.jpg
+
+imagem 3
+https://senaies.com.br/wp-content/uploads/2021/06/Curso-de-Qualificacao-gratuita.png
+
+imagem 4
+https://senaies.com.br/wp-content/uploads/2021/12/Senai-Matriculas-2022.png

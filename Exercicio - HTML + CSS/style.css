@@ -1,0 +1,36 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#index-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(4,60,115);
+}
+
+#header-icon {
+    width: 10%;
+}
+
+#first-page {
+   
+}
+
+#block-one, #block-two {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#block-one-img, #block-two-img {
+    width: 25%;
+    margin: 3% 15%;
+}
+
+#block-one-text, #block-two-text {
+    width: 50%;
+    margin: 3% 10%;
+}
