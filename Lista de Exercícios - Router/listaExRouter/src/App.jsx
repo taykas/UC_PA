@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { PagUser } from './pages/PagUser'
+import { Produtos } from './pages/Produdos'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,7 +13,8 @@ function App() {
     <>
       <BrowserRouter>
       <Routes>
-        <Route path='/profile/:userid' element={ <PagUser/> }></Route>
+        <Route path='/PagUser/:userid' element={ <PagUser/> }></Route>
+        <Route path='/produtos/:categoria/:id' element={ <Produtos/> }></Route>
       </Routes>
       </BrowserRouter>
     </>
