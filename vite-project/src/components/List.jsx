@@ -4,17 +4,25 @@ import { useNavigate } from 'react-router-dom'
 
 function List() {
     const [cards, setCards] = useState([])
+    const [nextUrl, setNextUrl] = useState(null)
+    const [previousUrl, setPrevioutUrl] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
-        getCards();
+        getCards('https://pokeapi.co/api/v2/pokemon');
     }, [])
 
-    const getCards = async () => {
-        const response = await axios.get('https://tarotapi.dev/api/v1/cards')
-        setCards(response.data.cards)
-        console.log(response.data.cards)
+    const getCards = async (url) => {
+        const response = await axios.get(url)
+        setCards(response.data.results)
+        setNextUrl(response.data.next)
+        setPrevioutUrl(response.data.previous)
     } 
+
+    const getIdFromUrl = (url) => {
+        const parts = url.split('/')
+        return parts[parts.length - 2]
+    }
 
     const openCards = (card) => {
         navigate('/show', {state: {card}})
@@ -22,16 +30,18 @@ function List() {
 
     return (
         <>
-        <div className='h-209 bg-amber-600 overflow-hidden'>
+        <div className='h-screen'>
             <ul>
                 {cards.map(card => (
-                    <li className='p-1 bg-'
-                        key={card.name_short}
+                    <li
+                        key={getIdFromUrl(card.url)}
                         onClick={() => openCards(card)}
                         style={{cursor: 'pointer', marginBottom: '8px'}}
-                        >{card.value_int} - {card.name}</li>
+                        >{card.name} - {card.name}</li>
                 ))}
             </ul>
+            <button onClick={() => getCards(previousUrl)}>Previous</button>
+            <button onClick={() => getCards(nextUrl)}>Prox</button>
         </div>
         </>
     )
