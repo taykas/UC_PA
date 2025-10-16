@@ -30,7 +30,7 @@ function List() {
 
     return (
         <div className="flex flex-col items-center p-8">
-            <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 w-200">
+            <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 w-300">
                 {cards.map(card => {
                     const id = getIdFromUrl(card.url)
                     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
@@ -40,12 +40,12 @@ function List() {
                         <li
                             key={id}
                             onClick={() => openCards(card)}
-                            className="flex flex-col items-center bg-gray-100 p-4 rounded-xl shadow-md cursor-pointer hover:scale-105 transition-transform"
+                            className="flex flex-col items-center bg-gray-100 p-3 rounded-xl shadow-md cursor-pointer hover:scale-105 transition-transform"
                         >
                             <img
                                 src={imageUrl}
                                 alt={card.name}
-                                className="w-24 h-24 mb-2"
+                                className="w-25 h-25 mb-2"
                             />
                             <span className="text-lg font-semibold capitalize">
                                 {card.name}
