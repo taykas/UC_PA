@@ -1,0 +1,16 @@
+1 - O que acontece se você não passar o segundo parâmetro ([]) no useEffect?
+    R: ele não executa novamente após ocorrer alguma mudanã de uma dependência.
+
+2 - Explique o conceito de props no React. Por que é importante que
+componentes recebam dados através das props?
+    R: é a inicialização/renderização do componente React, é importante pois
+    é a etapa reservada para realização de chamadas HTTP para APIs.
+
+3 - O que o TailwindCSS oferece de vantagem em relação ao CSS tradicional?
+    R: ajuda na estilização mais "rápida"
+
+4 - Identifique o problema no código abaixo e marque a alternativa que exibe o
+problema do código.
+    R: C - O useEffect depende de contador e, ao atualizá-lo dentro dele, causa
+um loop de renderizações.
+
