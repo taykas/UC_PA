@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { app } from '../firebaseConfig';
 import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
+import Swal from 'sweetalert2';
 
 const styles = StyleSheet.create ({
   main: {
@@ -42,13 +43,19 @@ const styles = StyleSheet.create ({
 export default function HomeScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const screen = Dimensions.get("window").width
 
   const auth = getAuth(app)
 
-  const singIn = async () => {
-    await signInWithEmailAndPassword(auth, email, password)
-    router.navigate('/')
+  const Login = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      router.navigate('/home')
+    } catch(e) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Credenciais Inválidas!'
+      }) 
+    }
   }
 
   return (
@@ -57,14 +64,14 @@ export default function HomeScreen() {
       <View style={styles.container}>
           <Text style={{alignSelf: 'flex-start', fontSize: 20, marginBottom: 10}}>Wellcome!</Text>
           <TextInput style={styles.input}
-            placeholder='Email'></TextInput>
+            placeholder='Email' onChangeText={(Varemail) => setEmail(Varemail)}></TextInput>
 
           <TextInput style={styles.input}
-            placeholder='Password' secureTextEntry={true}></TextInput>
+            placeholder='Password' secureTextEntry={true} onChangeText={(pass) => setPassword(pass)}></TextInput>
 
           <TouchableOpacity style={styles.login_bottom}>
             <View>
-              <Text style={{color: 'white', textAlign: 'center'}}>Login</Text>
+              <Text style={{color: 'white', textAlign: 'center'}} onPress={() => Login()}>Login</Text>
             </View>
           </TouchableOpacity>
 
@@ -89,10 +96,10 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.sing_up_container}>
-            <Text style={{color: '#a18bef'}}>Don't have an account?</Text>
+            <Text style={{color: '#a18bef'}}>Already have an account</Text>
             <TouchableOpacity>
               <View>
-                <Text style={{color: '#7067cb'}} onPress={() => router.navigate('/')}>Sing Up</Text>
+                <Text style={{color: '#7067cb'}} onPress={() => router.navigate('/')}>Sing Ip</Text>
               </View>
             </TouchableOpacity>
           </View>

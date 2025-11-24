@@ -37,6 +37,9 @@ const styles = StyleSheet.create ({
   sing_up_container: {
     flexDirection: 'row',
     gap: 5
+  },
+  haveAccount: {
+    flex: 1
   }
 });
 
@@ -130,6 +133,14 @@ export default function HomeScreen() {
             </View>
           </TouchableOpacity>
           </View>
+          <View style={styles.sing_up_container}>
+          <Text style={{color: '#a18bef'}}>Already have an account?</Text>
+          <TouchableOpacity>
+            <View>
+              <Text style={{color: '#7067cb'}} onPress={() => router.navigate('/login')}>Sing In</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
         </View>
       </View>
     </>
