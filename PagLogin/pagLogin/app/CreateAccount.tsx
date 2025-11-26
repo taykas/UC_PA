@@ -137,7 +137,7 @@ export default function HomeScreen() {
           <Text style={{color: '#a18bef'}}>Already have an account?</Text>
           <TouchableOpacity>
             <View>
-              <Text style={{color: '#7067cb'}} onPress={() => router.navigate('/')}>Sing In</Text>
+              <Text style={{color: '#7067cb'}} onPress={() => router.navigate('/')}>Login</Text>
             </View>
           </TouchableOpacity>
         </View>
