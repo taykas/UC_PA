@@ -1,138 +1,139 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../firebaseConfig';
-import { useEffect, useState } from 'react';
-import { router } from 'expo-router';
-import Swal from 'sweetalert2';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { getAuth } from "firebase/auth";
+import { useState } from 'react';
 import { Checkbox } from 'expo-checkbox';
+import { db } from '../firebaseConfig';
+import { addDoc, CollectionReference, DocumentData, serverTimestamp, collection, deleteDoc, doc, getDocs, query, updateDoc } from "firebase/firestore";
+import { router } from 'expo-router';
 
-const styles = StyleSheet.create ({
-  main: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
-  },
-  typeCheckbox: {
-    flexDirection: 'row',
-    gap: 5
-  },
-  checkList: {
-    flexDirection: 'row'
-  }
+const typesCol1 = ["Normal", "Fogo", "Água", "Planta", "Elétrico", "Gelo"];
+const typesCol2 = ["Lutador", "Voador", "Venenoso", "Terra", "Pedra", "Inseto"];
+const typesCol3 = ["Fantasma", "Metal", "Dragão", "Sombrio", "Fada", "Psíquico"];
+
+const styles = StyleSheet.create({
+    main: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+    },
+    typeCheckbox: {
+        flexDirection: 'row',
+        gap: 20
+    },
+    checkList: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 8
+    },
+    column: {
+        flexDirection: 'column'
+    }
 });
 
 export default function HomeScreen() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [isChecked, setChecked] = useState(false);
 
-  const auth = getAuth(app)
+    const [pokemonName, setPokemonName] = useState("");
+    const [cardNumber, setCardNumber] = useState('');
+    const [image, setImage] = useState('');
 
-  useEffect(() => {
-    console.log(email, password, confirmPassword)
-  }, [email, password, confirmPassword])
+    const [typeStates, setTypeStates] = useState(
+        [...typesCol1, ...typesCol2, ...typesCol3].map(t => ({
+        name: t,
+        checked: false
+        }))
+    );
 
-  return (
-    <>
-      <View style={styles.main}>
-        <View>
-            <TextInput placeholder='Pokemon Name'></TextInput>
+    const toggleType = (typeName) => {
+        setTypeStates(prev =>
+            prev.map(item =>
+                item.name === typeName ? { ...item, checked: !item.checked } : item
+            )
+        );
+    };
 
-            <TextInput placeholder='PC'></TextInput>
+    const renderColumn = (list) => (
+        <View style={styles.column}>
+            {list.map(type => {
+                const current = typeStates.find(t => t.name === type);
+                return (
+                    <View key={type} style={styles.checkList}>
+                        <Checkbox
+                        value={current?.checked}
+                        onValueChange={() => toggleType(type)}
+                        />
+                        <Text style={{ marginLeft: 8 }}>{type}</Text>
+                    </View>
+                );
+            })}
+        </View>
+    );
 
-            <Text style={{textAlign: 'center'}}>Type</Text>
+    const getSelectedTypes = () => {
+    return typeStates
+        .filter(t => t.checked)
+        .map(t => t.name);        
+    };
+
+    async function registerPokemon() {
+    try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        if (!user) {
+            console.log("Usuário não está logado.");
+            return;
+        }
+
+        const pokemon = {
+            pokemonName,
+            types: getSelectedTypes(),
+            cardNumber,
+            image,
+            userId: user.uid,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+        };
+
+        await addDoc(collection(db, "pokemon"), pokemon);
+
+        console.log("Pokemon cadastrado!");
+
+    } catch (err) {
+        console.log("Erro ao cadastrar:", err);
+    }
+}
+
+    return (
+        <View style={styles.main}>
+            <Text style={{marginBottom: 30}}>Wellcome!</Text>
+
+            <TouchableOpacity onPress={() => router.navigate('/list')}>
+                <View>
+                    <Text>Pokemon List</Text>
+                </View>
+            </TouchableOpacity>
+
+            <TextInput placeholder='Pokemon Name' onChangeText={(name) => setPokemonName(name)}
+                style={{padding: 10, margin: 5, width: 300, borderWidth: 2, borderColor: 'purple', borderRadius: 10}}/>
+            <TextInput placeholder='Card Number'  onChangeText={(card) => setCardNumber(card)}
+                style={{padding: 10, margin: 5, width: 300, borderWidth: 2, borderColor: 'purple', borderRadius: 10}}/>
+            <TextInput placeholder='URL Image'  onChangeText={(image) => setImage(image)}
+                style={{padding: 10, margin: 5, width: 300, borderWidth: 2, borderColor: 'purple', borderRadius: 10}}/>    
+
+            <Text style={{ marginTop: 10, marginBottom: 10}}>Type</Text>
+
             <View style={styles.typeCheckbox}>
-                <View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Normal</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Fogo</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Água</Text>
-                    </View>
-                </View>
-                <View>
-                    <View style={styles.checkList}>
-                         <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Planta</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Elétrico</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Lutador</Text>
-                    </View>
-                   
-                </View>
-                <View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Voador</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Venenoso</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Psiquico</Text>
-                    </View>
-                </View>
-                <View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Inseto</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Pedra</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Fantasma</Text>
-                    </View>
-                </View>
-                <View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Dragão</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Aço</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Sombrio</Text>
-                    </View>
-                </View>
-                <View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Fada</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Gelo</Text>
-                    </View>
-                    <View style={styles.checkList}>
-                        <Checkbox value={isChecked} onValueChange={setChecked}/>
-                        <Text>Terra</Text>
-                    </View>
-                </View>
+                {renderColumn(typesCol1)}
+                {renderColumn(typesCol2)}
+                {renderColumn(typesCol3)}
             </View>
 
+            <TouchableOpacity onPress={registerPokemon}>
+                <View>
+                    <Text>Cadastrar</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+    );
+}
 
-        </View>    
-      </View>
-    </>
-    )
-};

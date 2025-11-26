@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert, Dimensions } from 'react-native';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../firebaseConfig';
 import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
@@ -37,80 +37,47 @@ const styles = StyleSheet.create ({
   sing_up_container: {
     flexDirection: 'row',
     gap: 5
-  },
-  haveAccount: {
-    flex: 1
   }
 });
 
 export default function HomeScreen() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const auth = getAuth(app)
 
-  const signUp = async () => {
-    if(password.length >= 6){
-      if(password === confirmPassword){
-          try {
-            await createUserWithEmailAndPassword(auth, email, password)
-            Swal.fire({
-              icon: 'success',
-              title: 'Usuário cadastrado com sucesso!'
-            })
-            return router.navigate('/login') 
-          } catch(e) {
-            return Swal.fire({
-              icon: 'error',
-              title: 'Email já cadastrado!'
-            })
-          }
-      } else {
-        return Swal.fire({
-          icon: 'error',
-          title: 'As senhas não coincidem'
-        })
-      }
-    } else {
-        return Swal.fire({
-          icon: 'error',
-          title: 'A senha deve ter no mínimo 6 caracteres'
-        })
+  const Login = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      router.navigate('/home')
+    } catch(e) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Credenciais Inválidas!'
+      }) 
     }
   }
 
-  useEffect(() => {
-    console.log(email, password, confirmPassword)
-  }, [email, password, confirmPassword])
-
   return (
     <>
-      <View style={styles.main}>
-        <View style={styles.container}>
-          <Text style={{alignSelf: 'flex-start', fontSize: 20, marginBottom: 10}}>Create Account!</Text>
+    <View style={styles.main}>
+      <View style={styles.container}>
+          <Text style={{alignSelf: 'flex-start', fontSize: 20, marginBottom: 10}}>Wellcome!</Text>
+          <TextInput style={styles.input}
+            placeholder='Email' onChangeText={(Varemail) => setEmail(Varemail)}></TextInput>
 
           <TextInput style={styles.input}
-          placeholder='Name'></TextInput>
-
-          <TextInput style={styles.input}
-          placeholder='Email' onChangeText={(value) => setEmail(value)}></TextInput>
-
-          <TextInput style={styles.input}
-          placeholder='Password' onChangeText={(value) => setPassword(value)} secureTextEntry={true}></TextInput>
-
-          <TextInput style={styles.input}
-          placeholder='Confirm Password' onChangeText={(value) => setConfirmPassword(value)} secureTextEntry={true}></TextInput>
+            placeholder='Password' secureTextEntry={true} onChangeText={(pass) => setPassword(pass)}></TextInput>
 
           <TouchableOpacity style={styles.login_bottom}>
             <View>
-              <Text style={{color: 'white', textAlign: 'center'}} onPress={signUp}>Confirm</Text>
+              <Text style={{color: 'white', textAlign: 'center'}} onPress={() => Login()}>Login</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={{marginTop: 20, marginBottom: 20}}>
             <View>
-              <Text style={{color: '#6e4ce6'}}>Access Quickly</Text>
+              <Text style={{color: '#6e4ce6'}}>Forgot Password?</Text>
             </View>
           </TouchableOpacity>
 
@@ -121,28 +88,23 @@ export default function HomeScreen() {
               </View>
             </TouchableOpacity>
 
-          <TouchableOpacity>
-            <View>
-              <Text style={{fontSize: 15, marginBottom: 20, color: '#0615b1'}}>Facebook</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <View>
-              <Text style={{fontSize: 15, marginBottom: 20, color: '#5d24c1'}}>Linkedin</Text>
-            </View>
-          </TouchableOpacity>
+            <TouchableOpacity>
+              <View>
+                <Text style={{fontSize: 15, marginBottom: 20, color: '#0615b1'}}>Facebook</Text>
+              </View>
+            </TouchableOpacity>
           </View>
+
           <View style={styles.sing_up_container}>
-          <Text style={{color: '#a18bef'}}>Already have an account?</Text>
-          <TouchableOpacity>
-            <View>
-              <Text style={{color: '#7067cb'}} onPress={() => router.navigate('/login')}>Sing In</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+            <Text style={{color: '#a18bef'}}>Don't have an account?</Text>
+            <TouchableOpacity>
+              <View>
+                <Text style={{color: '#7067cb'}} onPress={() => router.navigate('/CreateAccount')}>Sing In</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </>
-    )
-};
+  )
+}
