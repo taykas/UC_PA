@@ -1,0 +1,14 @@
+Parte 1 - Perguntas
+
+1 - identifique o erro no codigo
+ R: B)justifyContent não aceita o valor "middle"
+
+2 - analise o erro no código abaixo
+ R: B) O estado está sendo inicializado com uma string ao invés de um useState.
+
+3 - Identifique o problema de estilo  no código
+ R: C) O style "container" não foi definido no StyleSheet.
+
+4 - Diferença entre o JS e o TS
+ R: JS -> Tipagem dinâmica, simples com flexibilidade
+    TS -> Tipagem estática, escalabilidade e melhor processo de compilação
