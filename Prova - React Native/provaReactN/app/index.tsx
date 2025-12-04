@@ -41,7 +41,7 @@ export default function HomeScreen() {
           <View style={styles.displayOptions}>
             <View style={styles.option1}></View>
             <View style={styles.option2}>
-              <Text>Focus</Text>
+              <Text style={{fontWeight:'bold'}}>Focus</Text>
             </View>
             <View style={styles.option3}></View>
           </View>
